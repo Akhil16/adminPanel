@@ -1,0 +1,89 @@
+<h1 *ngIf="vendorId!==null">Update Vendor</h1>
+<h1 *ngIf="vendorId==null">Register Vendor</h1>
+<form [formGroup]="vendorForm" (ngSubmit)='onSubmit(vendorForm)' #vendorForm>
+  <mat-card class="form-box">
+
+    <mat-form-field>
+      <input required placeholder="Name" matInput type="text" required formControlName="name" />
+    </mat-form-field>
+    <mat-form-field>
+      <input required placeholder="userName" matInput type="text" required formControlName="userName" />
+    </mat-form-field>
+    <mat-form-field>
+      <input required placeholder="email" matInput type="email" required formControlName="emailId" />
+    </mat-form-field>
+    <mat-form-field>
+      <input required placeholder="password" matInput type="password" required formControlName="password" />
+    </mat-form-field>
+    <mat-form-field>
+      <input required placeholder="contact" matInput type="number" required formControlName="contact" />
+    </mat-form-field>
+    <mat-form-field>
+      <input required placeholder="gstin" matInput type="text" required formControlName="gstin" />
+    </mat-form-field>
+
+    <br />
+    <button *ngIf="vendorId==null" mat-raised-button color="primary" type="submit" [disabled]="vendorForm.invalid">Submit</button> &nbsp;
+    <button *ngIf="vendorId!=null" mat-raised-button color="primary" type="submit" [disabled]="vendorForm.invalid">Update</button> &nbsp;
+    <button mat-raised-button color="warn" id='clear' type="reset">Clear</button>
+  </mat-card>
+</form>
+<!--
+<div class="col-12">
+
+ <div class="col-10 offset-1 mt-3 li-box">
+          <form [formGroup]=addVendor (ngSubmit)="onSubmit()" #addVendor>
+            <label for="name">Username</label>
+            <input type="text" id="name" class="form-control" formControlname="name" required>
+
+            <label for="emailId">Email Id:</label>
+            <input type="text" id="emailId" class="form-control" formControlname="emailId" required>
+
+            <label for="password">password</label>
+            <input type="password" id="password" class="form-control" formControlName="password" required>
+
+            <label for="contact">contact:</label>
+            <input type="number" id="contact" class="form-control" formControlName="contact" required minlength="10">
+
+            <label for="GSTIN">GSTIN:</label>
+            <input type="number" id="GSTIN" class="form-control" formControlName="GSTIN" required>
+            <br>
+            <button type="submit" class="btn  btn-lg btn-success">ADD</button>&nbsp;
+            <button type="reset" class="btn  btn-lg btn-warning">Reset Form</button>
+          </form>
+  </div>
+</div> -->
+<!--
+<mat-card>
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+    <form (submit)="onSubmit(vendorForm)" #vendorForm="ngForm" *ngIf="!isLoading">
+      <mat-form-field>
+        <input
+          matInput
+          type="text"
+          name="name"
+          [ngModel]="vendor?.name"
+          required
+          minlength="3"
+          placeholder="Name"
+          #title="ngModel">
+        <mat-error *ngIf="title.invalid">Please enter Vendor name</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <textarea
+          matInput
+          rows="4"
+          name="content"
+          [ngModel]="vendor?.content"
+          required
+          placeholder="Post Content"
+          #content="ngModel"></textarea>
+        <mat-error *ngIf="content.invalid">Please enter a post title.</mat-error>
+      </mat-form-field>
+      <button
+        mat-raised-button
+        color="accent"
+        type="submit">Save Post</button>
+    </form>
+  </mat-card>
+ -->

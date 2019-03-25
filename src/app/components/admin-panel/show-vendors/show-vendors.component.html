@@ -1,0 +1,31 @@
+<div class="panelheader">
+  <div class="display-4 ">
+    Vendor List:
+  </div>
+  <span class="spacer"></span>
+  <button mat-raised-button color="primary" [routerLink]="['/admin/vendors/new']">Register Vendors</button>
+</div>
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<mat-accordion multi="false" *ngIf="vendors.length > 0 && !isLoading">
+  <mat-expansion-panel *ngFor="let vendor of vendors">
+    <mat-expansion-panel-header>
+      {{ vendor.userName }}
+    </mat-expansion-panel-header>
+    <label for="id">Obj Id :</label> {{ vendor._id }} <br />
+    <label for="name">Name :</label> {{ vendor.name }} <br />
+    <label for="emailId">Email Id :</label> {{ vendor.email }} <br />
+    <label for="contact">Contact :</label> {{ vendor.contact }} <br />
+    <label for="gstin">GST :</label> {{ vendor.gstin }} <br />
+    <mat-action-row>
+      <a mat-button color="primary" (click)="updateVendor(vendor)"
+        >EDIT</a
+      >
+      <button mat-button color="warn" (click)="deleteVendor(vendor._id)">
+        DELETE
+      </button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
+<p class="info-text mat-body-1" *ngIf="vendors.length <= 0 && !isLoading">
+  No vendors added yet!
+</p>
