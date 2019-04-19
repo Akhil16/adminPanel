@@ -1,0 +1,302 @@
+{
+  "apiVersion": "1.0.0",
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "My Car API Documentation",
+    "description": "An API documentation for myCar api developed in node and documented in the swagger-2.0 specification",
+    "license": {
+      "name": "MIT Liscense",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:3001",
+  "basePath": "",
+  "tags": [{
+      "name": "Admins",
+      "description": "API's for Admin"
+    }
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/admin/vendors/new": {
+      "post": {
+        "tags": [
+          "Admins"
+        ],
+        "summary": "Adds new Vendor",
+        "description": "Vendor will be added",
+        "consumes": "application/json",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Vendor Vendors",
+            "description": "Given vendor Vendors will be saved",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "$ref": ""
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "examples": {
+              "application/json": {
+                "message": "Vendors is saved",
+                "Vendors": [{
+                  "_id": "5c9b220b74a3292ed4637c4f",
+                  "contact": 8908908089.0,
+                  "gstin": "123123123123",
+                  "name": "akhil",
+                  "userName": "akhil73",
+                  "email": "akhil@gmail.com",
+                  "password": "$2a$08$s0bOJbp1Qyh95UyQOUW3X.EozQXx3RknYmn7FT4dVOagvxtnqHSxW",
+                  "tokens": [],
+                  "__v": 0
+                }],
+                "status": 200
+              }
+            }
+          },
+          "400": {
+            "description": "Failed!",
+            "examples": {
+              "application/json": {
+                "message": "Couldn't save Vendors",
+                "Vendors": [],
+                "status": 400
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/vendors": {
+      "get": {
+        "tags": [
+          "Admins"
+        ],
+        "summary": "Get All Vendors",
+        "description": "Will get all vendors",
+        "consumes": "application/json",
+        "produces": [
+          "application/json"
+        ],
+        "parameters":[],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "examples": {
+              "application/json": {
+                "message": "List fetched successfully!",
+                "Vendors": [{
+                    "_id": "5c9b220b74a3292ed4637c4f",
+                    "contact": 8908908089.0,
+                    "gstin": "123123123123",
+                    "name": "akhil",
+                    "userName": "akhil73",
+                    "email": "akhil@gmail.com",
+                    "password": "$2a$08$s0bOJbp1Qyh95UyQOUW3X.EozQXx3RknYmn7FT4dVOagvxtnqHSxW",
+                    "tokens": [],
+                    "__v": 0
+                  },
+                  {
+                    "_id": "5c9b220b74a3292ed4637c5f",
+                    "contact": 8999999990,
+                    "gstin": "123123123123",
+                    "name": "Swati",
+                    "userName": "Swati3",
+                    "email": "akhil@gmail.com",
+                    "password": "$2a$08$s0bOJbp1Qyh95UyQOUW3X.EozQXx3RknYmn7FT4dVOagvxtnqHSxW",
+                    "tokens": [],
+                    "__v": 2
+                  }
+                ],
+                "status": 200
+              }
+            }
+          },
+          "500": {
+            "description": "Failed!",
+            "examples": {
+              "application/json": {
+                "message": "Error in show vendors",
+                "Vendors": [],
+                "status": 500
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/vendors/{vendorID}": {
+      "get": {
+        "tags": [
+          "Admins"
+        ],
+        "summary": "Get a Vendor",
+        "description": "Get a particular vendor by id",
+        "consumes": "application/json",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "vendorID",
+            "in": "path",
+            "description": "ID of vendor to get",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "examples": {
+              "application/json": {
+                "message": "vendor Found!",
+                "Vendors": {
+                  "_id": "5c9b220b74a3292ed4637c4f",
+                  "contact": 8908908089.0,
+                  "gstin": "123123123123",
+                  "name": "akhil",
+                  "userName": "akhil73",
+                  "email": "akhil@gmail.com",
+                  "password": "$2a$08$s0bOJbp1Qyh95UyQOUW3X.EozQXx3RknYmn7FT4dVOagvxtnqHSxW",
+                  "tokens": [],
+                  "__v": 0
+                },
+                "status": 200
+              }
+            }
+          },
+          "400": {
+            "description": "Failed!",
+            "examples": {
+              "application/json": {
+                "message": "no record",
+                "Vendors": [],
+                "status": 400
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Admins"
+        ],
+        "summary": "Update Vendor Vendors",
+        "description": "Update Vendors of a particular Vendor",
+        "consumes": "application/json",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "vendorID",
+            "in": "path",
+            "description": "ID of vendor to update",
+            "required": true
+          },
+          {
+            "name": "Vendor Vendors",
+            "description": "Given vendor Vendors will be saved",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "$ref": ""
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "examples": {
+              "application/json": {
+                "message": "vendor Updated!",
+                "Vendors": [{
+                  "_id": "5c9b220b74a3292ed4637c4f",
+                  "contact": 8908908089.0,
+                  "gstin": "123123123123",
+                  "name": "akhil",
+                  "userName": "akhil73",
+                  "email": "akhil@gmail.com",
+                  "password": "$2a$08$s0bOJbp1Qyh95UyQOUW3X.EozQXx3RknYmn7FT4dVOagvxtnqHSxW",
+                  "tokens": [],
+                  "__v": 0
+                }],
+                "status": 200
+              }
+            }
+          },
+          "500": {
+            "description": "Failed!",
+            "examples": {
+              "application/json": {
+                "message": "Error in updating vendors",
+                "Vendors": [],
+                "status": 450000
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Admins"
+        ],
+        "summary": "Delete Vendor",
+        "description": "Delete a particular vendor by id",
+        "consumes": "application/json",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "vendorID",
+            "in": "path",
+            "description": "ID of vendor to delete",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "examples": {
+              "application/json": {
+                "message": "vendor deleted",
+                "Vendors": [],
+                "status": 200
+              }
+            }
+          },
+          "500": {
+            "description": "Failed!",
+            "examples": {
+              "application/json": {
+                "message": "no record",
+                "Vendors": [],
+                "status": 500
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
