@@ -53,35 +53,40 @@ export class VendorService {
     return this.vendorsUpdated.asObservable();
   }
 
-  getVendor(id: string) {
-    return this.http.get<{
-      _id: string,
-      name: string,
-      userName: string,
-      email: string,
-      contact: number,
-      gstin: number,
-      password: string
-    }>(
+  getVendor(id: string): Observable<VendorModel[]> {
+    return this.http.get<VendorModel[]>(
       'http://localhost:3001/admin/vendors/' + id
     );
   }
 
-  postVendor(vendor) {
+  // postVendor(vendor) {
+  //   return this.http
+  //     .post<{ message: string; vendorId: string }>(
+  //       'http://localhost:3001/admin/vendors/new',
+  //       vendor
+  //     )
+  //     .subscribe(response => {
+  //       const id = response.vendorId;
+  //       vendor.id = id;
+  //       this.vendors.push(vendor);
+  //       this.vendorsUpdated.next([...this.vendors]);
+  //       this.router.navigate(['/']);
+  //     });
+  // }
+
+  postVendor(vendor): Observable<VendorModel[]> {
     return this.http
-      .post<{ message: string; vendorId: string }>(
+      .post<VendorModel[]>(
         'http://localhost:3001/admin/vendors/new',
         vendor
+      ).pipe(
+      tap(
+        ()=>{
+          this.refreshNeeded.next();
+        }
       )
-      .subscribe(response => {
-        const id = response.vendorId;
-        vendor.id = id;
-        this.vendors.push(vendor);
-        this.vendorsUpdated.next([...this.vendors]);
-        this.router.navigate(['/']);
-      });
+    );
   }
-
   updateVendor(vendor) {
     console.log(vendor);
 
@@ -89,14 +94,29 @@ export class VendorService {
     // console.log("This.->",this.currentData);
   }
 
-  putVendor(vendor, id) {
+  putVendor(vendor,id): Observable<VendorModel[]> {
+    console.log(vendor);
     const vendorUpdated: VendorModel = vendor;
-    console.log(vendor._id);
     return this.http.put<VendorModel[]>(
       'http://localhost:3001/admin/vendors/' + id,
       vendorUpdated
+    ).pipe(
+      tap(
+        ()=>{
+          this.refreshNeeded.next();
+        }
+      )
     );
   }
+
+  // putVendor(vendor, id): Observable<VendorModel[]> {
+  //   const vendorUpdated: VendorModel = vendor;
+  //   console.log(vendor._id);
+  //   return this.http.put<VendorModel[]>(
+  //     'http://localhost:3001/admin/vendors/' + id,
+  //     vendorUpdated
+  //   );
+  // }
 
   getVendorData() {
     console.log('XXXXX->', this.updateData);

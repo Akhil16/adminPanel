@@ -1,6 +1,6 @@
-<h1 *ngIf="vendorId!==null">Update Vendor</h1>
-<h1 *ngIf="vendorId==null">Register Vendor</h1>
-<form [formGroup]="vendorForm" (ngSubmit)='onSubmit(vendorForm)' #vendorForm>
+<h1 *ngIf="data !==null">Update Vendor</h1>
+<h1 *ngIf="data ==null">Register Vendor</h1>
+<form [formGroup]="vendorForm" (ngSubmit)='onSubmit()' >
   <mat-card class="form-box">
 
     <mat-form-field>
@@ -23,13 +23,13 @@
     </mat-form-field>
 
     <br />
-    <button *ngIf="vendorId==null" mat-raised-button color="primary" type="submit" [disabled]="vendorForm.invalid">Submit</button> &nbsp;
-    <button *ngIf="vendorId!=null" mat-raised-button color="primary" type="submit" [disabled]="vendorForm.invalid">Update</button> &nbsp;
+    <button *ngIf="data ==null" mat-raised-button color="primary" type="submit" [disabled]="vendorForm.invalid">Submit</button> &nbsp;
+    <button *ngIf="data !=null" mat-raised-button color="primary" type="submit" [disabled]="vendorForm.invalid">Update</button> &nbsp;
     <button mat-raised-button color="warn" id='clear' type="reset">Clear</button>
   </mat-card>
 </form>
-<!--
-<div class="col-12">
+
+<!-- <div class="col-12">
 
  <div class="col-10 offset-1 mt-3 li-box">
           <form [formGroup]=addVendor (ngSubmit)="onSubmit()" #addVendor>
@@ -55,35 +55,84 @@
 </div> -->
 <!--
 <mat-card>
-    <mat-spinner *ngIf="isLoading"></mat-spinner>
-    <form (submit)="onSubmit(vendorForm)" #vendorForm="ngForm" *ngIf="!isLoading">
-      <mat-form-field>
-        <input
-          matInput
-          type="text"
-          name="name"
-          [ngModel]="vendor?.name"
-          required
-          minlength="3"
-          placeholder="Name"
-          #title="ngModel">
-        <mat-error *ngIf="title.invalid">Please enter Vendor name</mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <textarea
-          matInput
-          rows="4"
-          name="content"
-          [ngModel]="vendor?.content"
-          required
-          placeholder="Post Content"
-          #content="ngModel"></textarea>
-        <mat-error *ngIf="content.invalid">Please enter a post title.</mat-error>
-      </mat-form-field>
-      <button
-        mat-raised-button
-        color="accent"
-        type="submit">Save Post</button>
-    </form>
-  </mat-card>
- -->
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <form (submit)="onSubmit(vendorForm)" #vendorForm="ngForm" *ngIf="!isLoading">
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        name="name"
+        [ngModel]="vendor?.name"
+        required
+        minlength="3"
+        placeholder="name"
+        #name="ngModel"
+      />
+      <mat-error *ngIf="name.invalid">Enter vendor name.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        name="userName"
+        [ngModel]="vendor?.userName"
+        required
+        placeholder="User name"
+        #userName="ngModel"
+      />
+      <mat-error *ngIf="userName.invalid">Enter user name.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        name="emailId"
+        type="email"
+        [ngModel]="vendor?.email"
+        required
+        placeholder="email ID"
+        #email="ngModel"
+      />
+      <mat-error *ngIf="email.invalid">Enter email ID.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        name="password"
+        type="password"
+        [ngModel]="vendor?.password"
+        required
+        placeholder="password"
+        #password="ngModel"
+      />
+      <mat-error *ngIf="password.invalid">Password.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        name="contact"
+        type="number"
+        min="1000000000"
+        max="9999999999"
+        [ngModel]="vendor?.contact"
+        required
+        placeholder="contact"
+        #contact="ngModel"
+      />
+      <mat-error *ngIf="contact.invalid">10 digits only.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        name="gstin"
+        type="number"
+        maxlength="12"
+        [ngModel]="vendor?.gstin"
+        required
+        placeholder="GST NO."
+        #gstin="ngModel"
+      />
+      <mat-error *ngIf="gstin.invalid">12 digits.</mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button color="warn" type="submit">Add Vendor</button>
+  </form>
+</mat-card> -->
